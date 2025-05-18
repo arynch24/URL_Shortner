@@ -1,4 +1,6 @@
 import CredentialsProvider from 'next-auth/providers/credentials';
+import { prisma } from '@/lib/prisma';
+import bcrypt from 'bcrypt';
 
 export const NEXT_AUTH_CONFIG = {
     providers: [
@@ -9,16 +11,31 @@ export const NEXT_AUTH_CONFIG = {
                 password: { label: 'password', type: 'password', placeholder: '' },
             },
             async authorize(credentials: any) {
+                if (!credentials?.email || !credentials?.password) {
+                    throw new Error("Email and password are required");
+                }
 
-                if(credentials.email!=="sdkjhf"){
+                const existingUser = await prisma.user.findUnique({
+                    where: { email: credentials.email },
+                });
+
+                if (!existingUser) {
+                    return null;
+                }
+
+                const isPasswordCorrect = await bcrypt.compare(
+                    credentials.password,
+                    existingUser.password
+                );
+
+                if (!isPasswordCorrect) {
                     return null;
                 }
 
                 return {
-                    id: "user1",
-                    name: "asd",
-                    userId: "asd",
-                    email: "ramdomEmail"
+                    id: existingUser.id,
+                    name: existingUser.name,
+                    email: existingUser.email,
                 };
             },
         }),
