@@ -15,8 +15,19 @@ datasource db {
 }
 
 model User {
-  id       String  @id @default(cuid())
-  name     String?
-  email    String  @unique
+  id       String @id @default(cuid())
+  name     String
+  email    String @unique
   password String
+  urls     Url[]
+}
+
+model Url {
+  id          String   @id @default(cuid())
+  shortCode   String   @unique
+  originalUrl String
+  createdAt   DateTime @default(now())
+  clicks      Int      @default(0)
+  userId      String?
+  user        User?    @relation(fields: [userId], references: [id])
 }
