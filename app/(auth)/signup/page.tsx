@@ -35,7 +35,7 @@ const SignupPage = () => {
             await signIn('credentials', {
                 email: form.email,
                 password: form.password,
-                callbackUrl: '/', // redirect after login
+                callbackUrl: '/dashboard', // redirect after login
             });
         }
         catch (error: any) {

@@ -10,6 +10,7 @@ export const NEXT_AUTH_CONFIG = {
                 email: { label: 'email', type: 'text', placeholder: '' },
                 password: { label: 'password', type: 'password', placeholder: '' },
             },
+            //this is called when user trys to signin with the credentials
             async authorize(credentials: any) {
                 if (!credentials?.email || !credentials?.password) {
                     throw new Error("Email and password are required");
@@ -32,6 +33,7 @@ export const NEXT_AUTH_CONFIG = {
                     return null;
                 }
 
+                //This object is passed to the jwt() callback as user to generate token jwt.sign() if u remember
                 return {
                     id: existingUser.id,
                     name: existingUser.name,
@@ -40,5 +42,13 @@ export const NEXT_AUTH_CONFIG = {
             },
         }),
     ],
+    callbacks: {
+        async session({ session, token }: any) {
+            if (token && session.user) {
+                session.user.id = token.sub as string; // add id to session.user
+            }
+            return session;
+        }
+    },
     secret: process.env.NEXTAUTH_SECRET,
 };
