@@ -13,12 +13,14 @@ export async function GET(req: Request, { params }: { params: { shortCode: strin
             return NextResponse.json({ error: 'Short code does not exist' }, { status: 404 });
         }
 
-        const clickCount = shortCodeExists.clicks ?? 0;
+        const clickCount = shortCodeExists.clicks;
 
-        await prisma.url.update({
+        const updated = await prisma.url.update({
             where: { shortCode },
             data: { clicks: clickCount + 1 }
         });
+
+        console.log("Updated clicks:", updated.clicks);
 
         return NextResponse.redirect(shortCodeExists.originalUrl, 301);
     } catch (error) {
