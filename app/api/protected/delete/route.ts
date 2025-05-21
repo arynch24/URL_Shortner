@@ -3,7 +3,7 @@ import { getServerSession } from 'next-auth';
 import { prisma } from '@/lib/prisma';
 import { NEXT_AUTH_CONFIG } from '@/lib/auth';
 
-export async function GET(req: any) {
+export async function DELETE(req: any) {
     const session: any = await getServerSession(NEXT_AUTH_CONFIG);
     if (!session) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -12,7 +12,7 @@ export async function GET(req: any) {
         const userId = session.user.id;
         const { searchParams } = new URL(req.url);
         const id = searchParams.get('id');
-        
+
         if (!id) {
             return NextResponse.json({ error: "ID is required" }, { status: 400 });
         }
