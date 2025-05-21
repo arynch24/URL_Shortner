@@ -37,7 +37,6 @@ export async function POST(req: Request) {
             }
         }
 
-        console.log(session);
         const newUrl = await prisma.url.create({
             data: {
                 originalUrl,
