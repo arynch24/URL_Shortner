@@ -13,7 +13,7 @@ const page = () => {
         setShortUrl('');
 
         try {
-            const res = await fetch("/api/protected/shorturl", {
+            const res = await fetch("/api/protected/create", {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
