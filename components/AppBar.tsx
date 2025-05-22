@@ -41,6 +41,8 @@ const AppBar = () => {
                     />
                     <button onClick={handleSignIn} className="border border-zinc-900">Sign In</button>
                     {error && <p className="text-red-400">{error}</p>}
+
+                    <button onClick={() => signIn('google')} className="border border-zinc-900">Sign In with Google</button>
                 </>
             ) : (
                 <>
