@@ -24,3 +24,26 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 } */
+
+.bg-bf-blue {
+  background-color: #4DA2FF;
+}
+
+.text-bf-blue {
+  color: #4DA2FF;
+}
+
+.bg-charcoal-blue {
+  background-color: #000F1D;
+}
+
+.text-charcoal-blue {
+  color: #000F1D;
+}
+
+.hover\:bg-bf-blue:hover {
+  background-color: #4DA2FF;
+}
+.hover\:text-bf-blue:hover {
+  color: #4DA2FF;
+}
