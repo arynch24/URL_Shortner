@@ -3,6 +3,7 @@
 import { Search, Plus, Pencil, Copy, Trash2, MousePointerClick, Calendar } from "lucide-react"
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Link from "next/link";
 
 const page = () => {
 
@@ -26,8 +27,10 @@ const page = () => {
     <div className="h-full w-full flex justify-center pt-10 ">
       <div className="h-full w-4xl flex flex-col gap-3 ">
 
-        <h1 className="text-2xl font-semibold text-zinc-800 ">Links</h1>
-        <p className="text-zinc-500 ">Create and manage your short links</p>
+        <div className="flex flex-col gap-1 pb-4">
+          <h1 className="text-2xl font-semibold text-zinc-800 ">Links</h1>
+          <p className="text-zinc-500 ">Create and manage your short links</p>
+        </div>
 
         <div className="flex justify-between items-center bg-zinc-100 p-4 rounded-md ">
           <div className="w-2/5 flex items-center gap-1 border border-zinc-400 rounded px-3 bg-white">
@@ -35,9 +38,9 @@ const page = () => {
             <input type="text" placeholder="Search links..." className="w-full h-10 rounded-md px-2 text-zinc-700 focus:outline-none focus:border-sky-500" />
           </div>
           <div className="">
-            <button className="flex items-center gap-2 bg-zinc-900 text-white px-4 py-2 rounded-md hover:bg-zinc-800 transition duration-200">
+            <Link href='/dashboard/links/create' className="flex items-center gap-2 bg-zinc-900 text-white px-4 py-2 rounded-md hover:bg-zinc-800 transition duration-200">
               <Plus size={20} strokeWidth={2} className="text-white" />Create Link
-            </button>
+            </Link>
           </div>
         </div>
 

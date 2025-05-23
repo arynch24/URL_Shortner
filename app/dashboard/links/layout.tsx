@@ -1,4 +1,3 @@
-import SideBar from "@/components/SideBar";
 
 const DashboardLayout = ({ children }: Readonly<{ children: React.ReactNode; }>) => {
     return (
