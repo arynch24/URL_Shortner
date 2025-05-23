@@ -8,7 +8,7 @@ const SideBar = () => {
     const pathname = usePathname();
 
     return (
-        <div className="h-full w-50 px-3 pt-4 flex flex-col justify-start gap-1 border-r border-zinc-200">
+        <div className="h-full w-50 px-3 pt-8 flex flex-col justify-start gap-1 border-r border-zinc-200">
             <Link href="/dashboard/links" className={`flex items-center gap-2 px-3 py-2 rounded hover:text-bf-blue hover:bg-gray-50 ${pathname === '/dashboard/links' ? 'bg-blue-50 text-bf-blue' : null}`}>
                 <Link2 strokeWidth={1} size={22} /> Links
             </Link>
