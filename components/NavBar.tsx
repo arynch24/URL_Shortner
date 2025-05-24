@@ -7,7 +7,7 @@ const DashboardNav = async () => {
     const session = await getServerSession(NEXT_AUTH_CONFIG);
 
     return (
-        <div className="flex items-center justify-between gap-1 px-20 py-4 border-b border-zinc-300">
+        <div className="flex items-center justify-between gap-1 px-24 py-4 border-b border-zinc-300">
             <Link href='/' className="flex gap-1 items-center cursor-pointer">
                 <Image
                     src='https://res.cloudinary.com/dr8ubbrmp/image/upload/v1748000628/shoo4vbiqfjyzkmk3hyl.png'
@@ -19,16 +19,22 @@ const DashboardNav = async () => {
                 <p className="text-2xl font-semibold text-zinc-800">Cuttly</p>
             </Link>
 
-            <div className="flex items-center gap-6 ">
-                <Link href='/signin'
-                    className="px-4 py-2 border border-zinc-500 rounded-md hover:bg-zinc-100 transition duration-200">
-                    LogIn
-                </Link>
-                <Link href='/signup'
-                    className=" bg-zinc-900 border border-zinc-900 text-white px-4 py-2 rounded-md hover:bg-zinc-800 transition duration-200">
-                    SignUp
-                </Link>
-            </div>
+            {
+                session ?
+                    null
+                    :
+                    <div className="flex items-center gap-6 ">
+                        <Link href='/signin'
+                            className="px-4 py-2 border border-zinc-500 rounded-md hover:bg-zinc-100 transition duration-200">
+                            LogIn
+                        </Link>
+                        <Link href='/signup'
+                            className=" bg-zinc-900 border border-zinc-900 text-white px-4 py-2 rounded-md hover:bg-zinc-800 transition duration-200">
+                            SignUp
+                        </Link>
+                    </div>
+            }
+
         </div>
     );
 };

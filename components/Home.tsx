@@ -1,9 +1,16 @@
 'use client'
+
 import { Ghost, Zap, Eye, Clipboard, ScanQrCode, ChartNoAxesCombined } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
+import { NEXT_AUTH_CONFIG } from '@/lib/auth';
+
 const Home = () => {
     const router = useRouter();
+    const { data: session,status } = useSession();
+    
+
     return (
         <div className="flex justify-between p-26">
 
@@ -19,19 +26,8 @@ const Home = () => {
                             Cuttly is a URL shortening service that lets you create custom short links, track clicks, and manage your links easily — perfect for marketers, businesses, or anyone sharing links.
                         </p>
                     </div>
-                    <div className="flex gap-22">
-                        <div className="flex flex-col gap-1">
-                            <p className="text-4xl font-bold text-zinc-800">2.4M+</p>
-                            <p className="text-zinc-500 font-semibold">Links Created</p>
-                        </div>
-                        <div className="flex flex-col gap-1">
-                            <p className="text-4xl font-bold text-zinc-800">8.7M+</p>
-                            <p className="text-zinc-500 font-semibold">Monthly Clicks</p>
-                        </div>
-                        <div className="flex flex-col gap-1">
-                            <p className="text-4xl font-bold text-zinc-800">49K+</p>
-                            <p className="text-zinc-500 font-semibold">Active Users</p>
-                        </div>
+                    <div >
+                        <button className="bg-sky-600 text-white px-6 py-3 rounded-md hover:bg-sky-700 cursor-pointer transition-colors" onClick={() => status ? router.push('/dashboard/links/create') : router.push('/signin')}>Get Started</button>
                     </div>
                 </div>
             </div>
@@ -42,7 +38,7 @@ const Home = () => {
                     <div className='flex items-center gap-3'>
                         <Zap size={32} className='text-bf-blue rounded-md bg-sky-200 p-2' /> Try it out
                     </div>
-                    <div className='flex flex-col gap-3' onClick={()=>router.push('/dashboard/links')}>
+                    <div className='flex flex-col gap-3' onClick={() => router.push('/dashboard/links')}>
                         <div className='flex justify-between px-4 py-2 border border-zinc-300 rounded-md '>
                             <input placeholder='Paste your long URL here...' className='w-full focus:outline-none' />
                             <Clipboard size={20} className='text-zinc-400' />
