@@ -4,10 +4,23 @@ import { Search, Plus, Pencil, Copy, Trash2, MousePointerClick, Calendar } from 
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const page = () => {
 
   const [urls, setUrls] = useState([]);
+  const router: any = useRouter();
+
+  const handleEdit = (url: any) => {
+    const query = new URLSearchParams({
+      id: url.id,
+      destUrl: url.originalUrl,
+      shortCode: url.shortCode
+    }).toString();
+
+    router.push(`/dashboard/links/edit?${query}`);
+  };
+
 
   useEffect(() => {
     const fetchUrls = async () => {
@@ -66,7 +79,10 @@ const page = () => {
                   </div>
                   <div className="flex gap-2 ">
                     <Copy size={26} strokeWidth={2} className="border text-zinc-700 border-zinc-400 p-1 cursor-pointer rounded hover:bg-zinc-100" />
-                    <Pencil size={26} strokeWidth={2} className="border text-zinc-700 border-zinc-400 p-1 cursor-pointer rounded hover:bg-zinc-100" />
+                    <Pencil size={26} strokeWidth={2}
+                      className="border text-zinc-700 border-zinc-400 p-1 cursor-pointer rounded hover:bg-zinc-100"
+                      onClick={() => handleEdit(url)}
+                    />
                     <Trash2 size={26} strokeWidth={2} className="border text-zinc-700 border-zinc-400 p-1 cursor-pointer rounded hover:bg-zinc-100" />
                   </div>
                 </div>
