@@ -21,6 +21,22 @@ const page = () => {
     router.push(`/dashboard/links/edit?${query}`);
   };
 
+  const handleDelete = async (id: string) => {
+    try {
+      await axios.delete(`/api/protected/delete?id=${id}`);
+      setUrls(urls.filter((url: any) => url.id !== id));
+    } catch (error) {
+      console.error('Error deleting URL:', error);
+    }
+  }
+
+  const handleCopy = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (err) {
+      console.error('Failed to copy!', err);
+    }
+  };
 
   useEffect(() => {
     const fetchUrls = async () => {
@@ -78,12 +94,16 @@ const page = () => {
                     </div>
                   </div>
                   <div className="flex gap-2 ">
-                    <Copy size={26} strokeWidth={2} className="border text-zinc-700 border-zinc-400 p-1 cursor-pointer rounded hover:bg-zinc-100" />
+                    <Copy size={26} strokeWidth={2}
+                      className="border text-zinc-700 border-zinc-400 p-1 cursor-pointer rounded hover:bg-zinc-100"
+                      onClick={() => handleCopy(`http://localhost:3000/api/redirect/${url.shortCode}`)} />
                     <Pencil size={26} strokeWidth={2}
                       className="border text-zinc-700 border-zinc-400 p-1 cursor-pointer rounded hover:bg-zinc-100"
                       onClick={() => handleEdit(url)}
                     />
-                    <Trash2 size={26} strokeWidth={2} className="border text-zinc-700 border-zinc-400 p-1 cursor-pointer rounded hover:bg-zinc-100" />
+                    <Trash2 size={26} strokeWidth={2}
+                      className="border text-zinc-700 border-zinc-400 p-1 cursor-pointer rounded hover:bg-zinc-100"
+                      onClick={() => handleDelete(url.id)} />
                   </div>
                 </div>
               ))
