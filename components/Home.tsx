@@ -26,7 +26,7 @@ const Home = () => {
                         </p>
                     </div>
                     <div >
-                        <button className="bg-sky-600 text-white px-6 py-3 rounded-md hover:bg-sky-700 cursor-pointer transition-colors" onClick={() => status ? router.push('/dashboard/links/create') : router.push('/signin')}>Get Started</button>
+                        <button className="bg-sky-600 text-white px-6 py-3 rounded-md hover:bg-sky-700 cursor-pointer transition-colors" onClick={() => status ? router.push('/dashboard/links') : router.push('/signin')}>Get Started</button>
                     </div>
                 </div>
             </div>

@@ -1,9 +1,18 @@
+'use client'
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const DashboardPage = () => {
+    const router = useRouter();
+
+    useEffect(() => {
+        router.push('/dashboard/links');
+    }
+        , [router]);
+
     return (
-        <div className="w-full h-screen bg-red-500">
-            kjkjjjjjjjjjjjjjjjjjj
-        </div>
+        <>
+        </>
     )
 }
 
