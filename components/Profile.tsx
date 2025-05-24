@@ -7,7 +7,7 @@ import { useState } from 'react'
 
 const Profile = () => {
     const { data: session } = useSession();
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
         <div>

@@ -21,7 +21,7 @@ const page = () => {
                 originalUrl, customCode
             });
 
-            if (!res.data.ok) {
+            if (res.status!== 200) {
                 setError(res.data.error || "Something went wrong.");
                 return;
             }

@@ -5,10 +5,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import CardShimmer from '@/components/CardShimmer'
 
 const page = () => {
 
   const [urls, setUrls] = useState([]);
+  const [loading, setLoading] = useState(false);
   const router: any = useRouter();
 
   const handleEdit = (url: any) => {
@@ -41,8 +43,10 @@ const page = () => {
   useEffect(() => {
     const fetchUrls = async () => {
       try {
+        setLoading(true);
         const response = await axios.get('/api/protected/my-urls');
         setUrls(response.data);
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching URLs:', error);
       }
@@ -73,7 +77,9 @@ const page = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-2">
+        {loading && <CardShimmer />}
+
+        <div className="flex flex-col gap-2 h-96 overflow-auto">
           {
             urls.length > 0 ?
               urls.map((url: any) => (

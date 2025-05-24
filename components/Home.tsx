@@ -9,7 +9,6 @@ import { NEXT_AUTH_CONFIG } from '@/lib/auth';
 const Home = () => {
     const router = useRouter();
     const { data: session,status } = useSession();
-    
 
     return (
         <div className="flex justify-between p-26">
@@ -31,7 +30,6 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-
 
             <div className='w-lg flex flex-col gap-4 p-6 -mt-8'>
                 <div className='flex flex-col gap-6 text-zinc-600 border border-zinc-300 rounded-lg p-6'>

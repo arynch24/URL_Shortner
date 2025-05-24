@@ -7,7 +7,7 @@ const DashboardNav = async () => {
     const session = await getServerSession(NEXT_AUTH_CONFIG);
 
     return (
-        <div className="flex items-center justify-between gap-1 px-24 py-4 border-b border-zinc-300">
+        <div className="flex items-center justify-between gap-1 px-24 pr-30 py-4 border-b border-zinc-300">
             <Link href='/' className="flex gap-1 items-center cursor-pointer">
                 <Image
                     src='https://res.cloudinary.com/dr8ubbrmp/image/upload/v1748000628/shoo4vbiqfjyzkmk3hyl.png'

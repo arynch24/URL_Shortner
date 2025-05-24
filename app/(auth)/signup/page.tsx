@@ -54,7 +54,10 @@ const SignupPage = () => {
                         <a className='text-blue-500 cursor-pointer hover:text-blue-700 underline' onClick={() => router.push('signin')}>Log in</a>
                     </p>
                 </div>
-                <button className='w-full flex items-center gap-2 justify-center p-2 border border-zinc-300 rounded-md text-md mb-4 cursor-pointer hover:bg-zinc-100 hover:border-zinc-500' onClick={() => signIn('google')}>
+                <button className='w-full flex items-center gap-2 justify-center p-2 border border-zinc-300 rounded-md text-md mb-4 cursor-pointer hover:bg-zinc-100 hover:border-zinc-500'
+                    onClick={() => signIn('google', {
+                        callbackUrl: '/dashboard'
+                    })}>
                     <img src="https://cdn-icons-png.flaticon.com/128/281/281764.png" alt="GitHub Icon" className="w-4 h-4" />
                     Continue with Google
                 </button>
