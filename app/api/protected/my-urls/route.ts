@@ -9,7 +9,6 @@ export async function GET(req: Request) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
     try {
-        console.log(session);
         const userId = session.user.id;
         const urls = await prisma.url.findMany({
             where: {
