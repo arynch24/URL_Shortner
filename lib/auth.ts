@@ -26,7 +26,12 @@ export const NEXT_AUTH_CONFIG = {
                 });
 
                 if (!existingUser) {
-                    return null;
+                    throw new Error("No user found with this email address. Please sign up first.");
+                }
+
+                // Check if this is a Google OAuth user trying to set password
+                if (existingUser.password === 'GOOGLE_OAUTH_USER') {
+                    throw new Error("This email is linked to a Google account. Please sign in with Google or contact support to set a password.");
                 }
 
                 const isPasswordCorrect = await bcrypt.compare(
@@ -35,7 +40,7 @@ export const NEXT_AUTH_CONFIG = {
                 );
 
                 if (!isPasswordCorrect) {
-                    return null;
+                    throw new Error("Invalid credentials. Please check your email and password.");
                 }
 
                 //This object is passed to the jwt() callback as user to generate token jwt.sign() if u remember
@@ -48,12 +53,51 @@ export const NEXT_AUTH_CONFIG = {
         }),
     ],
     callbacks: {
+        async signIn({ user, account }: any) {
+            // Handle Google OAuth sign in
+            if (account?.provider === 'google') {
+                try {
+                    // Check if user already exists in database
+                    let existingUser = await prisma.user.findUnique({
+                        where: { email: user.email },
+                    });
+
+                    if (!existingUser) {
+                        // Create new user for Google sign-in with a placeholder password
+                        existingUser = await prisma.user.create({
+                            data: {
+                                email: user.email,
+                                name: user.name || 'Google User',
+                                password: 'GOOGLE_OAUTH_USER', // Placeholder for OAuth users
+                            },
+                        });
+                    }
+
+                    // Set the user id for the session
+                    user.id = existingUser.id;
+                    return true;
+                } catch (error) {
+                    console.error('Error during Google sign in:', error);
+                    return false;
+                }
+            }
+            
+            return true;
+        },
+        
+        async jwt({ token, user }: any) {
+            if (user) {
+                token.id = user.id;
+            }
+            return token;
+        },
+        
         async session({ session, token }: any) {
             if (token && session.user) {
-                session.user.id = token.sub as string; // add id to session.user
+                session.user.id = token.id as string;
             }
             return session;
-        }
+        },
     },
     secret: process.env.NEXTAUTH_SECRET,
 };

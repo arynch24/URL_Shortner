@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
+import { CircleAlert } from 'lucide-react';
 
 const SigninPage = () => {
     const router = useRouter();
@@ -14,6 +15,7 @@ const SigninPage = () => {
     };
 
     const handleSignIn = async () => {
+        setError('');
         const res = await signIn('credentials', {
             redirect: false,
             email: form.email,
@@ -55,7 +57,6 @@ const SigninPage = () => {
                     <div className="w-full">
                         <h3 className="font-semibold text-md mb-1 text-left">
                             Email
-                            {error && <span className='text-red-500 text-sm ml-2 transition-colors'>{error}</span>}
                         </h3>
                         <input
                             className="w-full p-2 border border-zinc-300 rounded-md text-md focus:outline-none focus:border-zinc-500 mb-4"
@@ -70,6 +71,7 @@ const SigninPage = () => {
                             type="password"
                             onChange={handleChange}
                         />
+                        {error && <span className='flex items-start gap-1 text-red-500 text-sm transition-colors py-2 pb-3'><CircleAlert size={16} className='mt-1'/>{error}</span>}
                         <div onClick={handleSignIn}>
                             <button className="w-full bg-blue-600 text-white px-4 py-2 rounded-md cursor-pointer hover:bg-blue-700">
                                 Sign In
