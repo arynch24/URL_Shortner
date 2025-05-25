@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import CardShimmer from '@/components/CardShimmer'
 
-const page = () => {
+const Links = () => {
 
   const [urls, setUrls] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -122,4 +122,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Links

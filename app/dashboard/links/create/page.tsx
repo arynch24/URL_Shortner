@@ -3,7 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import axios from "axios";
 
-const page = () => {
+const Create = () => {
 
     const [customCode, setCustomCode] = useState('');
     const [originalUrl, setOriginalUrl] = useState('');
@@ -92,4 +92,4 @@ const page = () => {
     )
 }
 
-export default page;
+export default Create;

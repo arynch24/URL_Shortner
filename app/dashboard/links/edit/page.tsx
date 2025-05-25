@@ -5,7 +5,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 
-const page = () => {
+const Edit = () => {
 
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -91,4 +91,4 @@ const page = () => {
     )
 }
 
-export default page;
+export default Edit;
