@@ -41,11 +41,10 @@ const SignupPage = () => {
         catch (error: any) {
             setError(error.message || "Something went wrong");
         }
-
     };
 
     return (
-        <div className='h-[calc(100vh-4rem)] w-full flex items-center justify-center'>
+        <div className='h-screen w-full flex items-center'>
             <div className='h-full w-3/5 flex flex-col justify-center text-zinc-800 gap-4 max-w-sm mx-auto'>
                 <div className='flex flex-col gap-2 pb-3'>
                     <h1 className='font-bold text-3xl'>Create your account</h1>
@@ -101,42 +100,8 @@ const SignupPage = () => {
                     </div>
                 </div>
             </div>
-            <div className='w-2/5 h-full bg-zinc-300'></div>
         </div>
-
-
     );
 };
 
 export default SignupPage;
-
-{/* <div className='w-full h-screen flex items-center justify-center'>
-            <div className='h-full w-3/5 flex flex-col justify-center text-zinc-800 gap-4 max-w-sm mx-auto'>
-                <div className='flex flex-col gap-2'>
-                    <h1 className='font-bold text-3xl'>Create your account</h1>
-                    <p className='text-sm flex gap-1'>
-                        Already have an account?
-                        <a className='text-blue-600 cursor-pointer' onClick={() => router.push('signin')}>Log in</a>
-                    </p>
-                </div>
-
-                <button className='border p-2 cursor-pointer' onClick={() => signIn('google')}>
-                    Continue with Google
-                </button>
-
-                <div className='flex gap-2 items-center'>
-                    <div className='h-[0.5px] w-full bg-zinc-600' />OR
-                    <div className='h-[0.5px] w-full bg-zinc-600' />
-                </div>
-
-                <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-                    <input type="text" name="name" placeholder="Name" onChange={handleChange} className="border-1 border-zinc-400 p-2 hover:border-zinc-800 rounded focus:outline-none focus:border-zinc-900" />
-                    <input type="email" name="email" placeholder="Email" onChange={handleChange} className="border-[0.5px] p-2" />
-                    <input type="password" name="password" placeholder="Password" onChange={handleChange} className="border p-2" />
-                    {error && <p className="text-red-500">{error}</p>}
-                    <button type="submit" className="bg-black text-white py-2">Sign Up</button>
-                </form>
-            </div>
-
-            <div className='w-2/5 h-full bg-zinc-300'></div>
-        </div> */}

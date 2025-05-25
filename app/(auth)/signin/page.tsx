@@ -30,7 +30,7 @@ const SigninPage = () => {
     }
 
     return (
-        <div className='h-[calc(100vh-4rem)] w-full flex items-center justify-center'>
+        <div className='h-screen w-full flex items-center'>
             <div className='h-full w-3/5 flex flex-col justify-center text-zinc-800 gap-4 max-w-sm mx-auto'>
                 <div className='flex flex-col gap-2 pb-3'>
                     <h1 className='font-bold text-3xl'>Create your account</h1>
@@ -78,7 +78,6 @@ const SigninPage = () => {
                     </div>
                 </div>
             </div>
-            <div className='w-2/5 h-full bg-zinc-300'></div>
         </div>
 
 
