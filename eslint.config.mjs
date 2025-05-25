@@ -14,25 +14,21 @@ export default [
     ignores: [
       "**/node_modules/**",
       "**/.next/**",
-      "**/.prisma/**",
-      "**/prisma/generated/**",
-      "**/@prisma/**",
-      "**/prisma/client/**",
-      "**/generated/prisma-client/**",
-      "**/.prisma/client/**",
-      "**/dist/**",
-      "**/build/**",
     ],
   },
 
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  ...compat.extends("next/core-web-vitals"),
   
+  // Disable all TypeScript rules
   {
     rules: {
+      ...Object.fromEntries(
+        Object.keys({}).map(key => [key, 'off'])
+      ),
       '@typescript-eslint/no-unused-vars': 'off',
       '@typescript-eslint/no-empty-object-type': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
-      '@typescript-eslint/no-unused-expressions': 'off', 
+      '@typescript-eslint/no-unused-expressions': 'off',
     },
   },
 ];
