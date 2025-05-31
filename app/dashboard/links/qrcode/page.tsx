@@ -2,33 +2,45 @@
 
 import { useState, useEffect } from 'react';
 import QRCode from 'qrcode';
-import { useSearchParams } from "next/navigation";
 import Link from 'next/link';
+import { Suspense } from 'react';
 
-const QRCodeGenerator: React.FC<{ text: string }> = () => {
+const QRCodeForm: React.FC = () => {
     const [qrCodeUrl, setQrCodeUrl] = useState<string>('');
-    const searchParams = useSearchParams();
-
-    const id = searchParams.get('id') as string;
-    const destUrl = searchParams.get('destUrl') as string;
-    const shortCode = searchParams.get('shortCode') as string;
+    const [id, setId] = useState('');
+    const [destUrl, setDestUrl] = useState('');
+    const [shortCode, setShortCode] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
-        const generateQRCode = async () => {
-            try {
-                const url = await QRCode.toDataURL(destUrl);
-                setQrCodeUrl(url);
-            } catch (err) {
-                console.error('Failed to generate QR Code:', err);
-            }
-        };
+        // Get search params after component mounts (client-side only)
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlId = urlParams.get('id') || '';
+        const urlDestUrl = urlParams.get('destUrl') || '';
+        const urlShortCode = urlParams.get('shortCode') || '';
 
-        generateQRCode();
-    }, [destUrl]);
+        setId(urlId);
+        setDestUrl(urlDestUrl);
+        setShortCode(urlShortCode);
+        setMounted(true);
 
-    const [loading, setLoading] = useState(false);
+        // Generate QR code if destUrl is available
+        if (urlDestUrl) {
+            generateQRCode(urlDestUrl);
+        }
+    }, []);
 
-    const handleDownlood = async () => {
+    const generateQRCode = async (url: string) => {
+        try {
+            const qrUrl = await QRCode.toDataURL(url);
+            setQrCodeUrl(qrUrl);
+        } catch (err) {
+            console.error('Failed to generate QR Code:', err);
+        }
+    };
+
+    const handleDownload = async () => {
         setLoading(true);
         try {
             const response = await fetch(qrCodeUrl);
@@ -40,6 +52,7 @@ const QRCodeGenerator: React.FC<{ text: string }> = () => {
             document.body.appendChild(a);
             a.click();
             a.remove();
+            window.URL.revokeObjectURL(url);
         } catch (error) {
             console.error('Error downloading QR code:', error);
         } finally {
@@ -47,6 +60,10 @@ const QRCodeGenerator: React.FC<{ text: string }> = () => {
         }
     }
 
+    // Show loading until mounted and params are loaded
+    if (!mounted) {
+        return <div className="flex justify-center items-center h-screen">Loading...</div>;
+    }
 
     return (
         <div>
@@ -78,23 +95,36 @@ const QRCodeGenerator: React.FC<{ text: string }> = () => {
                                 </Link>
                                 <button
                                     className="w-fit flex items-center gap-2 bg-zinc-900 text-white px-4 py-2 rounded-md hover:bg-zinc-800 transition duration-200 cursor-pointer"
-                                    onClick={handleDownlood}
-                                    disabled={loading}>
+                                    onClick={handleDownload}
+                                    disabled={loading || !qrCodeUrl}>
                                     {loading ? 'Downloading...' : 'Download'}
                                 </button>
                             </div>
 
                         </div>
-                        <div >
+                        <div>
                             <div className="border border-zinc-300 bg-zinc-100 p-4 rounded-xl">
-                                {qrCodeUrl && <img src={qrCodeUrl} alt="QR Code" className="w-48 h-48" />}
+                                {qrCodeUrl ? (
+                                    <img src={qrCodeUrl} alt="QR Code" className="w-48 h-48" />
+                                ) : (
+                                    <div className="w-48 h-48 flex items-center justify-center text-zinc-500">
+                                        Generating QR Code...
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    );
+};
 
+const QRCodeGenerator = () => {
+    return (
+        <Suspense fallback={<div className="flex justify-center items-center h-screen">Loading...</div>}>
+            <QRCodeForm />
+        </Suspense>
     );
 };
 
