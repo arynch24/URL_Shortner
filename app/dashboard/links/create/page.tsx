@@ -2,18 +2,18 @@
 import { useState } from "react";
 import Link from "next/link";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const Create = () => {
 
     const [customCode, setCustomCode] = useState('');
     const [originalUrl, setOriginalUrl] = useState('');
-    const [shortUrl, setShortUrl] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const router = useRouter();
 
     const handleSubmit = async () => {
         setError('');
-        setShortUrl('');
         setLoading(true);
 
         try {
@@ -21,18 +21,18 @@ const Create = () => {
                 originalUrl, customCode
             });
 
-            if (res.status!== 200) {
+            if (res.status !== 200) {
                 setError(res.data.error || "Something went wrong.");
                 return;
             }
-
-            setShortUrl(res.data.shortUrl);
+            router.push('/dashboard/links');
         }
         catch (err) {
             console.error("An error occurred:", err);
             setError("Something went wrong while connecting to the server.");
         } finally {
             setLoading(false);
+            
         }
     }
 
@@ -60,15 +60,6 @@ const Create = () => {
                         {error && (
                             <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md">
                                 {error}
-                            </div>
-                        )}
-
-                        {shortUrl && (
-                            <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-md">
-                                <p className="font-medium">Short URL created successfully!</p>
-                                <p className="text-sm mt-1">
-                                    <span className="font-mono bg-green-100 px-2 py-1 rounded">{shortUrl}</span>
-                                </p>
                             </div>
                         )}
 

@@ -11,6 +11,7 @@ const Links = () => {
 
   const [urls, setUrls] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [loadingText, setLoadingText] = useState('');
   const router: any = useRouter();
 
   const handleEdit = (url: any) => {
@@ -25,18 +26,28 @@ const Links = () => {
 
   const handleDelete = async (id: string) => {
     try {
+      setLoadingText('Deleting URL...');
       await axios.delete(`/api/protected/delete?id=${id}`);
       setUrls(urls.filter((url: any) => url.id !== id));
     } catch (error) {
       console.error('Error deleting URL:', error);
     }
+    finally {
+      setLoadingText('');
+    }
   }
 
   const handleCopy = async (text: string) => {
     try {
+      setLoadingText('Copying URL...');
       await navigator.clipboard.writeText(text);
     } catch (err) {
       console.error('Failed to copy!', err);
+    }
+    finally {
+      setTimeout(() => {
+        setLoadingText('');
+      }, 1000); 
     }
   };
 
@@ -148,6 +159,12 @@ const Links = () => {
               : null
           }
         </div>
+        {loadingText && (
+          <div className="flex items-center justify-center mt-4  ">
+            <p className="text-zinc-600 border rounded-full px-4 py-2 text-bf-blue ">{loadingText}</p>
+          </div>
+        )}
+
 
       </div>
     </div>
