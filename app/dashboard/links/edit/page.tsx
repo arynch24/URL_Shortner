@@ -1,23 +1,27 @@
 "use client"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useSearchParams } from "next/navigation";
 import { Suspense } from 'react'
 
 const EditForm = () => {
     const router = useRouter();
-    const searchParams = useSearchParams();
-
-    const id = searchParams.get('id');
-    const destUrl = searchParams.get('destUrl');
-    const shortCode = searchParams.get('shortCode');
-
-    const [customCode, setCustomCode] = useState(shortCode || '');
-    const [originalUrl, setOriginalUrl] = useState(destUrl || '');
+    
+    const [id, setId] = useState('');
+    const [customCode, setCustomCode] = useState('');
+    const [originalUrl, setOriginalUrl] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        setId(urlParams.get('id') || '');
+        setOriginalUrl(urlParams.get('destUrl') || '');
+        setCustomCode(urlParams.get('shortCode') || '');
+        setMounted(true);
+    }, []);
 
     const handleSave = async () => {
         try {
@@ -43,6 +47,10 @@ const EditForm = () => {
         } finally {
             setLoading(false);
         }
+    }
+
+    if (!mounted) {
+        return <div className="flex justify-center items-center h-screen">Loading...</div>;
     }
 
     return (
