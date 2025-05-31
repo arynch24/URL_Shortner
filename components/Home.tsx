@@ -4,7 +4,6 @@ import { Ghost, Zap, Eye, Clipboard, ScanQrCode, ChartNoAxesCombined } from 'luc
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
-import { NEXT_AUTH_CONFIG } from '@/lib/auth';
 
 const Home = () => {
     const router = useRouter();
