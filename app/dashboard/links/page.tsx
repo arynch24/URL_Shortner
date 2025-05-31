@@ -99,7 +99,7 @@ const Links = () => {
                     <img src={`https://www.google.com/s2/favicons?domain=${url.originalUrl}&sz=64`} alt="favicon" className="h-10 w-10 mt-1" />
                     <div className="flex flex-col gap-3">
                       <div className="flex flex-col gap-1">
-                        <a href={`http://localhost:3000/api/redirect/${url.shortCode}`} className=" text-bf-blue  hover:underline">{`http://localhost:3000/api/redirect/${url.shortCode}`}</a>
+                        <a href={`https://cuttely.vercel.app/api/${url.shortCode}`} className=" text-bf-blue  hover:underline">{`https://cuttely.vercel.app/api/${url.shortCode}`}</a>
                         <a href={url.originalUrl} className="text-zinc-700 hover:underline text-sm">{url.originalUrl}</a>
                       </div>
                       <div className="flex gap-4">
@@ -126,7 +126,7 @@ const Links = () => {
                     <div className="relative group">
                       <Copy size={26} strokeWidth={2}
                         className="border text-zinc-700 border-zinc-400 p-1 cursor-pointer rounded hover:bg-zinc-100"
-                        onClick={() => handleCopy(`http://localhost:3000/api/redirect/${url.shortCode}`)}
+                        onClick={() => handleCopy(`https://cuttely.vercel.app/api/${url.shortCode}`)}
                       />
                       <span className="absolute top-8 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
                         Copy URL
