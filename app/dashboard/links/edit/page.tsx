@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 
 const EditForm = () => {
     const router = useRouter();
-    
+
     const [id, setId] = useState('');
     const [customCode, setCustomCode] = useState('');
     const [originalUrl, setOriginalUrl] = useState('');
@@ -70,9 +70,15 @@ const EditForm = () => {
                         />
 
                         <label className="text-sm font-medium text-zinc-700">Short Link</label>
-                        <input type='text' placeholder="(optional)" value={customCode} onChange={(e) => { setCustomCode(e.target.value) }}
-                            className="border border-zinc-300 rounded-md px-3 py-2 focus:outline-none focus:border-sky-500"
-                        />
+                        <div className="flex items-center gap-2">
+                            <input type='text' placeholder="https://cuttely.vercel.app/api" value={`https://cuttely.vercel.app/api`} readOnly
+                                className="border border-zinc-300 bg-zinc-100 rounded-md px-3 py-2 focus:outline-none focus:border-sky-500 w-1/2 cursor-not-allowed"
+                            />
+                            /
+                            <input type='text' placeholder="(optional)" value={customCode} onChange={(e) => { setCustomCode(e.target.value) }}
+                                className="w-1/2 border border-zinc-300 rounded-md px-3 py-2 focus:outline-none focus:border-sky-500"
+                            />
+                        </div>
 
                         {error && (
                             <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md">
