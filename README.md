@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🔗 URL Shortener
 
-## Getting Started
+A full-stack **URL Shortener** built using **Next.js 14 App Router**, **TypeScript**, **Prisma**, **NeonDB (PostgreSQL)**, and **NextAuth**.  
+Users can shorten long links, generate QR codes, and manage their personalized dashboard — all protected with authentication.
 
-First, run the development server:
+### 🚀 [Live Demo](https://cuttely.vercel.app)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📌 Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- 🔐 Authentication with **Google OAuth** and **Credentials (email + password)** using NextAuth
+- 🧾 Dashboard to view & manage your shortened links
+- 🔗 Shorten long URLs with a single click
+- 📷 Generate and download QR codes for shortened links
+- 🛡️ Protected routes using **NextAuth sessions** and **middleware.ts**
+- 🌐 File-based API routing in Next.js for backend functionality
+- 💽 Database management using **Prisma** with **Neon Postgres**
+- ⚙️ Smooth **Vercel deployment** with environment configs
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🧠 What I Learned
 
-To learn more about Next.js, take a look at the following resources:
+- How to configure **NextAuth** using both Google and Credentials provider
+- How to **extend session and JWT** to include `user.id` via callbacks
+- Handling **client vs server components**, especially with `useSearchParams`
+- Using `middleware.ts` to protect routes on both frontend and backend
+- Fetching sessions using `useSession` on frontend and `getServerSession` on backend
+- Prisma schema modeling, migrations, and NeonDB setup
+- Solving **TypeScript + Prisma + Vercel deployment** issues
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛠️ Tech Stack
 
-## Deploy on Vercel
+- **Frontend:** Next.js App Router, TypeScript, Tailwind CSS
+- **Backend:** Next.js API Routes, NextAuth, Prisma
+- **Database:** NeonDB (PostgreSQL)
+- **Auth:** Google OAuth + Credentials via NextAuth
+- **Hosting:** Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🖼️ Screenshots
+1. Landing Page
+   
+   ![Landing Page](https://res.cloudinary.com/dr8ubbrmp/image/upload/v1748801350/cubmhfnb1rss4vrhap0r.png)
+
+2. Login Page
+
+   <img src="https://res.cloudinary.com/dr8ubbrmp/image/upload/v1748801539/zwtt9gvmaexly3pyefes.png" alt="alt text" width="50%" height="50%">
+
+4. Dashboard
+
+   ![Dashboard](https://res.cloudinary.com/dr8ubbrmp/image/upload/v1748801614/chz2p5mjx8ywt2pcruhu.png)
+
+5. URL Shortening Form
+
+   ![URL Shortening Form](https://res.cloudinary.com/dr8ubbrmp/image/upload/v1748801701/dqrqy0trr1w419gmetwu.png)
+
+6. Short URL + QR Output
+
+    ![QR Output](https://res.cloudinary.com/dr8ubbrmp/image/upload/v1748801773/zogewzmu4fcgvasxupgz.png)
+
+7. Prisma Schema
+
+    <img src="https://res.cloudinary.com/dr8ubbrmp/image/upload/v1748801909/llitcfdrvy2dpsisoyxy.png" alt="alt text" width="50%" height="50%">
+
+
+---
+
+## 🧪 Project Structure
+
+  <img src="https://res.cloudinary.com/dr8ubbrmp/image/upload/v1748802485/dwhj1gcmajbqf1cin24k.png" alt="alt text" width="30%" height="30%">
+    
+<br/>
+<br/>
+
+> ✅ **Highlights**:
+- `app/(auth)` — handles sign-in/sign-up routes  
+- `app/api` — server-side API routes for auth, CRUD, and redirect logic  
+- `app/dashboard/links` — UI for creating, editing, and QR generation  
+- `lib/` — utilities for auth and Prisma setup  
+- `prisma/` — schema and DB migrations
+
+    
+<br/>
+<br/>
+
+ ## Made with ❤️ by Aryan Chauhan
