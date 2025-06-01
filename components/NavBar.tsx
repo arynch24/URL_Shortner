@@ -4,9 +4,11 @@ import { NEXT_AUTH_CONFIG } from '@/lib/auth';
 import Image from 'next/image';
 
 const DashboardNav = async () => {
+    // Fetch the session to check if the user is authenticated
     const session = await getServerSession(NEXT_AUTH_CONFIG);
 
     return (
+
         <div className="flex items-center justify-between gap-1 px-24 pr-30 py-4 border-b border-zinc-300">
             <Link href='/' className="flex gap-1 items-center cursor-pointer">
                 <Image
@@ -19,6 +21,7 @@ const DashboardNav = async () => {
                 <p className="text-2xl font-semibold text-zinc-800">Cuttly</p>
             </Link>
 
+            {/* Profile component to display user information or avatar */ }
             {
                 session ?
                     null

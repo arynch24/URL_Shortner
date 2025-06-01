@@ -5,7 +5,13 @@ import Image from 'next/image';
 import Profile from './Profile';
 
 const DashboardNav = async () => {
+
+  // Fetch the session to check if the user is authenticated
   const session = await getServerSession(NEXT_AUTH_CONFIG);
+
+  if (!session) {
+    return null; // or redirect to login page
+  }
 
   return (
     <div className="flex items-center justify-between gap-1 px-8 pr-10 py-2 border-b border-zinc-300">

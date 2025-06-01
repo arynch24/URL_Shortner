@@ -6,12 +6,17 @@ import { signOut, useSession } from 'next-auth/react'
 import { useState } from 'react'
 
 const Profile = () => {
+
+    // Using NextAuth to get the current session
     const { data: session } = useSession();
+
+    // State to manage the dropdown visibility
     const [isOpen, setIsOpen] = useState(false);
 
     return (
         <div>
 
+            {/* Profile section with user image and name */}
             <div className="flex items-center gap-2 border p-2 border-zinc-300 rounded-md">
                 <div className="w-8 h-8 flex items-center justify-center border border-zinc-500 rounded-full bg-zinc-100 text-zinc-700">
                     {session?.user?.image ? (
@@ -34,6 +39,8 @@ const Profile = () => {
                 }
 
             </div>
+
+            {/* Dropdown menu for user profile actions */}
             {isOpen && (
                 <div className="absolute right-10 mt-2 w-xs bg-white border border-zinc-300 rounded-md shadow-lg z-10">
                     <ul className="py-1">

@@ -6,12 +6,17 @@ import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 
 const Home = () => {
+
+    // Using Next.js router for navigation
     const router = useRouter();
+
+    // Using NextAuth to get the session data
     const { data: session,status } = useSession();
 
     return (
         <div className="flex justify-between p-26">
 
+            {/* Left side section with text content */}
             <div className='max-w-3xl '>
                 <div className="flex flex-col gap-10">
                     <div className="w-fit flex items-center text-zinc-700 gap-2 border border-zinc-400 px-4 py-1 rounded-full">
@@ -30,6 +35,7 @@ const Home = () => {
                 </div>
             </div>
 
+            {/* Right side section with an image or illustration */}
             <div className='w-lg flex flex-col gap-4 p-6 -mt-8'>
                 <div className='flex flex-col gap-6 text-zinc-600 border border-zinc-300 rounded-lg p-6'>
                     <div className='flex items-center gap-3'>
@@ -60,6 +66,8 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
+
+                {/* Features section showcasing different functionalities */}
                 <div className='flex gap-4'>
                     <div className='w-1/2 border border-zinc-300 rounded-lg p-6'>
                         <ChartNoAxesCombined size={32} className='text-bf-blue mb-4 bg-zinc-100 rounded p-1' />
