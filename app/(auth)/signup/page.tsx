@@ -70,7 +70,7 @@ const SignupPage = () => {
                 </div>
 
                 {/* Button to sign in with Google */}
-                <button className='w-full flex items-center gap-2 justify-center p-2 border border-zinc-300 rounded-md text-md mb-4 cursor-pointer hover:bg-zinc-100 hover:border-zinc-500'
+                <button className='w-full flex items-center gap-2 justify-center p-2 border border-zinc-300 rounded-md text-base mb-4 cursor-pointer hover:bg-zinc-100 hover:border-zinc-500'
                     onClick={() => signIn('google', {
                         callbackUrl: '/dashboard/links'
                     })}>
@@ -86,26 +86,26 @@ const SignupPage = () => {
                 {/* Form for email and password signup */}
                 <div className="flex justify-center items-center">
                     <div className="w-full">
-                        <h3 className="font-semibold text-md mb-1 text-left">Name</h3>
+                        <h3 className="font-semibold text-base mb-1 text-left">Name</h3>
                         <input
-                            className="w-full p-2 border border-zinc-300 rounded-md text-md focus:outline-none focus:border-zinc-500  mb-4"
+                            className="w-full p-2 border border-zinc-300 rounded-md text-base focus:outline-none focus:border-zinc-500  mb-4"
                             name='name'
                             type="text"
                             onChange={handleChange}
 
                         />
-                        <h3 className="font-semibold text-md mb-1 text-left">
+                        <h3 className="font-semibold text-base mb-1 text-left">
                             Email
                         </h3>
                         <input
-                            className="w-full p-2 border border-zinc-300 rounded-md text-md focus:outline-none focus:border-zinc-500 mb-4"
+                            className="w-full p-2 border border-zinc-300 rounded-md text-base focus:outline-none focus:border-zinc-500 mb-4"
                             name='email'
                             type="email"
                             onChange={handleChange}
                         />
-                        <h3 className="font-semibold text-md mb-1 text-left">Password</h3>
+                        <h3 className="font-semibold text-base mb-1 text-left">Password</h3>
                         <input
-                            className="w-full p-2 border border-zinc-300 rounded-md text-md focus:outline-none focus:border-zinc-500 mb-4"
+                            className="w-full p-2 border border-zinc-300 rounded-md text-base focus:outline-none focus:border-zinc-500 mb-4"
                             name='password'
                             type="password"
                             onChange={handleChange}
