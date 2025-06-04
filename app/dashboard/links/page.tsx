@@ -100,7 +100,7 @@ const Links = () => {
 
 
   return (
-    <div className="h-full w-full flex justify-center pt-10">
+    <div className="h-screen w-full flex justify-center pt-10">
       <div className="h-full md:w-4xl flex flex-col gap-3 ">
 
         {/* Header section with title and description */}
@@ -126,7 +126,7 @@ const Links = () => {
         {loading && <CardShimmer />}
 
         {/* List of URLs */}
-        <div className="flex flex-col gap-2 h-96 overflow-auto overflow-x-clip">
+        <div className="flex flex-col gap-2 mb-8 overflow-auto overflow-x-clip">
           {
             urls.length > 0 ?
               urls.map((url: any) => (
@@ -220,7 +220,7 @@ const Links = () => {
 
         {/* Display loading text if any action is in progress */}
         {loadingText && (
-          <div className="flex items-center justify-center mt-4  ">
+          <div className="flex items-center justify-center mt-4">
             <p className="text-zinc-600 border rounded-full px-4 py-2 text-bf-blue ">{loadingText}</p>
           </div>
         )}
