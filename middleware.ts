@@ -12,5 +12,5 @@ export async function middleware(req: any) {
 }
 
 export const config = {
-    matcher: ["/dashboard/:path*", "/api/protected/:path*",],
+    matcher: [ ],
 };

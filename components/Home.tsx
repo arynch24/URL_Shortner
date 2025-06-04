@@ -12,9 +12,10 @@ const Home = () => {
 
     // Using NextAuth to get the session data
     const { status } = useSession();
+    console.log('Session Status:', status);
 
     return (
-        <div className="flex flex-wrap gap-16 md:gap-0 justify-between p-10 md:p-26">
+        <div className="flex flex-wrap gap-16 md:gap-0 justify-between p-8 md:p-26">
 
             {/* Left side section with text content */}
             <div className='md:max-w-3xl'>
@@ -31,7 +32,7 @@ const Home = () => {
                     </div>
                     <div >
                         <button className="text-sm md:text-base bg-sky-600 text-white px-6 py-3 rounded-md hover:bg-sky-700 cursor-pointer transition-colors"
-                            onClick={() => !status ? router.push('/dashboard/links') : router.push('/signin')}>
+                            onClick={() => status === "unauthenticated" ? router.push('/signin') : router.push('/dashboard/links')}>
                             Get Started
                         </button>
                     </div>

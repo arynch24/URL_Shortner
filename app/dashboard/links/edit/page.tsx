@@ -91,24 +91,24 @@ const EditForm = () => {
                     {/* Header section with title and description */}
                     <div className="flex flex-col gap-1">
                         <h1 className="text-2xl font-semibold text-zinc-800 ">Edit Link</h1>
-                        <p className="text-zinc-600 ">Hope you not worried, you can edit this now.</p>
+                        <p className="text-zinc-600 text-sm md:text-base pb-3">Hope you not worried, you can edit this now.</p>
                     </div>
 
                     {/* Form section for editing an existing link */}
                     <div className="flex flex-col gap-3 rounded-md">
                         <label className="text-sm font-medium text-zinc-700">Destination URL</label>
                         <input type='text' placeholder="https://your-long-url.com" value={originalUrl} onChange={(e) => { setOriginalUrl(e.target.value) }}
-                            className="border border-zinc-300 rounded-md px-3 py-2 focus:outline-none focus:border-sky-500"
+                            className="border text-sm md:text-base border-zinc-300 rounded-md px-3 py-2 focus:outline-none focus:border-sky-500"
                         />
 
                         <label className="text-sm font-medium text-zinc-700">Short Link</label>
                         <div className="flex items-center gap-2">
                             <input type='text' placeholder="https://cuttely.vercel.app/api" value={`https://cuttely.vercel.app/api`} readOnly
-                                className="border border-zinc-300 bg-zinc-100 rounded-md px-3 py-2 focus:outline-none focus:border-sky-500 w-1/2 cursor-not-allowed"
+                                className="border text-sm md:text-base border-zinc-300 bg-zinc-100 rounded-md px-3 py-2 focus:outline-none focus:border-sky-500 w-1/2 cursor-not-allowed"
                             />
                             /
                             <input type='text' placeholder="(optional)" value={customCode} onChange={(e) => { setCustomCode(e.target.value) }}
-                                className="w-1/2 border border-zinc-300 rounded-md px-3 py-2 focus:outline-none focus:border-sky-500"
+                                className="w-1/2 border text-sm md:text-base border-zinc-300 rounded-md px-3 py-2 focus:outline-none focus:border-sky-500"
                             />
                         </div>
 
@@ -122,11 +122,11 @@ const EditForm = () => {
                         {/* Footer section with action buttons */}
                         <div className="flex justify-between pt-4">
                             <Link href='/dashboard/links'
-                                className="flex items-center gap-2 px-4 py-2 border border-zinc-500 rounded-md hover:bg-zinc-100 transition duration-200">
+                                className="flex text-sm md:text-base items-center gap-2 px-4 py-2 border border-zinc-500 rounded-md hover:bg-zinc-100 transition duration-200">
                                 Cancel
                             </Link>
                             <button
-                                className="flex items-center gap-2 bg-zinc-900 text-white px-4 py-2 rounded-md hover:bg-zinc-800 transition duration-200 cursor-pointer"
+                                className="flex text-sm md:text-base items-center gap-2 bg-zinc-900 text-white px-4 py-2 rounded-md hover:bg-zinc-800 transition duration-200 cursor-pointer"
                                 onClick={handleSave}
                                 disabled={loading}>
                                 {loading ? 'Saving...' : 'Save'}
