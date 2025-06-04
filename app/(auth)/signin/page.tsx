@@ -41,7 +41,7 @@ const SigninPage = () => {
 
     return (
         <div className='h-screen w-full flex items-center'>
-            <div className='h-full w-3/5 flex flex-col justify-center text-zinc-800 gap-4 max-w-sm mx-auto'>
+            <div className='h-full w-full px-6 flex flex-col justify-center text-zinc-800 gap-4 max-w-md mx-auto'>
 
                 {/* Header section */}
                 <div className='flex flex-col gap-2 pb-3'>
