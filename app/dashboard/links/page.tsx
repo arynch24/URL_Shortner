@@ -101,7 +101,7 @@ const Links = () => {
 
   return (
     <div className="h-screen w-full flex justify-center pt-10">
-      <div className="h-full md:w-4xl flex flex-col gap-3 ">
+      <div className="h-full w-full md:w-4xl flex flex-col gap-3 ">
 
         {/* Header section with title and description */}
         <div className="flex flex-col gap-1 pb-4">
