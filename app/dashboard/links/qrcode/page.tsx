@@ -114,29 +114,29 @@ const QRCodeForm: React.FC = () => {
     }
 
     return (
-        <div>
+        <div className='h-full w-full'>
             <div className="h-full w-full flex justify-center pt-10">
-                <div className="h-full w-4xl flex flex-col gap-3 bg-white p-6 rounded-md border-[0.5px] border-zinc-300">
+                <div className="h-full md:w-4xl flex flex-col gap-3 bg-white p-6 rounded-md border-[0.5px] border-zinc-300">
 
                     {/* Header section with title and description */}
                     <div className="flex flex-col gap-1">
                         <h1 className="text-2xl font-semibold text-zinc-800 ">QR Code</h1>
-                        <p className="text-zinc-600 ">
+                        <p className="text-zinc-600 pb-2 ">
                             Scan the QR code to access the destination URL.
                         </p>
                     </div>
 
                     {/* Form section for displaying the QR code and destination URL */}
-                    <div className='flex justify-between w-full '>
-                        <div className=" flex flex-col gap-3 rounded-md w-xl ">
+                    <div className='flex flex-col md:flex-row gap-5 justify-between w-full'>
+                        <div className=" flex flex-col gap-3 rounded-md md:w-xl ">
                             <label className="text-sm font-medium text-zinc-700">Destination URL</label>
                             <input type='text' placeholder="https://your-long-url.com" value={destUrl} readOnly
-                                className="border border-zinc-300 rounded-md px-3 py-2 focus:outline-none focus:border-sky-500"
+                                className="border text-sm md:text-base border-zinc-300 rounded-md px-3 py-2 focus:outline-none focus:border-sky-500"
                             />
 
                             <label className="text-sm font-medium text-zinc-700">Short Link</label>
                             <input type='text' placeholder="(optional)" value={`https://cuttely.vercel.app/api/${shortCode}`} readOnly
-                                className="border border-zinc-300 rounded-md px-3 py-2 focus:outline-none focus:border-sky-500"
+                                className="border text-sm md:text-base border-zinc-300 rounded-md px-3 py-2 focus:outline-none focus:border-sky-500"
                             />
 
                             {/* Display error message if there is an error */}
@@ -149,11 +149,11 @@ const QRCodeForm: React.FC = () => {
                             {/* Footer section with action buttons */}
                             <div className='w-full flex justify-between mt-2'>
                                 <Link href='/dashboard/links'
-                                    className="w-fit flex items-center gap-2 px-4 py-2  border border-zinc-500 rounded-md hover:bg-zinc-100 transition duration-200 cursor-pointer">
+                                    className="text-sm md:text-base w-fit flex items-center gap-2 px-4 py-2  border border-zinc-500 rounded-md hover:bg-zinc-100 transition duration-200 cursor-pointer">
                                     Cancel
                                 </Link>
                                 <button
-                                    className="w-fit flex items-center gap-2 bg-zinc-900 text-white px-4 py-2 rounded-md hover:bg-zinc-800 transition duration-200 cursor-pointer"
+                                    className="text-sm md:text-base w-fit flex items-center gap-2 bg-zinc-900 text-white px-4 py-2 rounded-md hover:bg-zinc-800 transition duration-200 cursor-pointer"
                                     onClick={handleDownload}
                                     disabled={loading || !qrCodeUrl}>
                                     {loading ? 'Downloading...' : 'Download'}
@@ -163,7 +163,7 @@ const QRCodeForm: React.FC = () => {
                         
                         {/* Display the generated QR code */}
                         <div>
-                            <div className="border border-zinc-300 bg-zinc-100 p-4 rounded-xl">
+                            <div className="flex justify-center border border-zinc-300 bg-zinc-100 p-4 rounded-xl">
                                 {qrCodeUrl ? (
                                     <img src={qrCodeUrl} alt="QR Code" className="w-48 h-48" />
                                 ) : (

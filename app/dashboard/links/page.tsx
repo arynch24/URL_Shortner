@@ -72,7 +72,7 @@ const Links = () => {
     finally {
       setTimeout(() => {
         setLoadingText('');
-      }, 1000); 
+      }, 1000);
     }
   };
 
@@ -100,8 +100,8 @@ const Links = () => {
 
 
   return (
-    <div className="h-full w-full flex justify-center pt-10 ">
-      <div className="h-full w-4xl flex flex-col gap-3 ">
+    <div className="h-full w-full flex justify-center pt-10">
+      <div className="h-full md:w-4xl flex flex-col gap-3 ">
 
         {/* Header section with title and description */}
         <div className="flex flex-col gap-1 pb-4">
@@ -130,25 +130,43 @@ const Links = () => {
           {
             urls.length > 0 ?
               urls.map((url: any) => (
-                <div key={url.id} className=" flex gap-3 justify-between border border-zinc-300 p-4 rounded bg-white">
-                  <div className="flex gap-3">
-                    <img src={`https://www.google.com/s2/favicons?domain=${url.originalUrl}&sz=64`} alt="favicon" className="h-10 w-10 mt-1" />
-                    <div className="flex flex-col gap-3">
-                      <div className="flex flex-col gap-1">
-                        <a href={`https://cuttely.vercel.app/api/${url.shortCode}`} className=" text-bf-blue  hover:underline">{`https://cuttely.vercel.app/api/${url.shortCode}`}</a>
-                        <a href={url.originalUrl} className="text-zinc-700 hover:underline text-sm">{url.originalUrl}</a>
+                <div key={url.id} className="w-full flex flex-col md:flex-row gap-5 md:gap-3 justify-between border border-zinc-300 p-4 rounded bg-white">
+                  <div className="w-full flex gap-3 min-w-0">
+                    <img src={`https://www.google.com/s2/favicons?domain=${url.originalUrl}&sz=64`} alt="favicon" className="h-8 md:h-10 md:w-10 mt-1 flex-shrink-0" />
+                    <div className="w-full flex flex-col gap-3 min-w-0">
+                      <div className="w-full flex flex-col gap-1 min-w-0">
+                        <a
+                          href={`https://cuttely.vercel.app/api/${url.shortCode}`}
+                          className="text-bf-blue hover:underline truncate block"
+                          title={`https://cuttely.vercel.app/api/${url.shortCode}`}
+                        >
+                          {`https://cuttely.vercel.app/api/${url.shortCode}`}
+                        </a>
+                        <a
+                          href={url.originalUrl}
+                          className="text-zinc-700 hover:underline text-sm truncate block"
+                          title={url.originalUrl}
+                        >
+                          {url.originalUrl}
+                        </a>
                       </div>
-                      <div className="flex gap-4">
-                        <p className="flex items-center gap-2 text-sm text-zinc-600"><Calendar size={20} strokeWidth={1} className=" text-zinc-600" /> {new Date(url.createdAt).toLocaleDateString('en-US', {
-                          month: 'short', day: 'numeric', year: 'numeric',
-                        })}</p>
-                        <p className="flex items-center gap-2 text-sm text-zinc-600"><MousePointerClick size={24} strokeWidth={1} className=" text-zinc-600" /> {url.clicks}</p>
+                      <div className="flex flex-wrap gap-4">
+                        <p className="flex items-center gap-2 text-sm text-zinc-600 whitespace-nowrap">
+                          <Calendar size={20} strokeWidth={1} className="text-zinc-600" />
+                          {new Date(url.createdAt).toLocaleDateString('en-US', {
+                            month: 'short', day: 'numeric', year: 'numeric',
+                          })}
+                        </p>
+                        <p className="flex items-center gap-2 text-sm text-zinc-600 whitespace-nowrap">
+                          <MousePointerClick size={24} strokeWidth={1} className="text-zinc-600" />
+                          {url.clicks}
+                        </p>
                       </div>
                     </div>
                   </div>
 
-                  { /* Action buttons for QR Code, Copy, Edit, and Delete */}
-                  <div className="flex gap-2 relative mr-3">
+                  {/* Action buttons for QR Code, Copy, Edit, and Delete */}
+                  <div className="flex gap-2 relative ml-11 md:ml-0 md:mr-3 flex-shrink-0">
 
                     {/* QR Code button */}
                     <div className="relative group">
@@ -157,7 +175,7 @@ const Links = () => {
                           className="border text-zinc-700 border-zinc-400 p-1 cursor-pointer rounded hover:bg-zinc-100"
                         />
                       </Link>
-                      <span className="absolute top-8 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+                      <span className="absolute top-8 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
                         QR Code
                       </span>
                     </div>
@@ -168,7 +186,7 @@ const Links = () => {
                         className="border text-zinc-700 border-zinc-400 p-1 cursor-pointer rounded hover:bg-zinc-100"
                         onClick={() => handleCopy(`https://cuttely.vercel.app/api/${url.shortCode}`)}
                       />
-                      <span className="absolute top-8 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+                      <span className="absolute top-8 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
                         Copy URL
                       </span>
                     </div>
@@ -178,7 +196,7 @@ const Links = () => {
                         className="border text-zinc-700 border-zinc-400 p-1 cursor-pointer rounded hover:bg-zinc-100"
                         onClick={() => handleEdit(url)}
                       />
-                      <span className="absolute top-8 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+                      <span className="absolute top-8 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
                         Edit Link
                       </span>
                     </div>
@@ -188,7 +206,7 @@ const Links = () => {
                         className="border text-zinc-700 border-zinc-400 p-1 cursor-pointer rounded hover:bg-zinc-100"
                         onClick={() => handleDelete(url.id)}
                       />
-                      <span className="absolute top-8 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+                      <span className="absolute top-8 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
                         Delete Link
                       </span>
                     </div>

@@ -14,7 +14,7 @@ const DashboardNav = async () => {
   }
 
   return (
-    <div className="flex items-center justify-between gap-1 px-8 pr-10 py-2 border-b border-zinc-300">
+    <div className="flex items-center justify-between gap-1 px-6 py-2 border-b border-zinc-300">
       <Link href='/' className="flex gap-1 items-center cursor-pointer">
         <Image
           src='https://res.cloudinary.com/dr8ubbrmp/image/upload/v1748000628/shoo4vbiqfjyzkmk3hyl.png'
