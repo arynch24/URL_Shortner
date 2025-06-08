@@ -3,9 +3,8 @@
 import { useState, useEffect } from 'react';
 import QRCode from 'qrcode';
 import Link from 'next/link';
-import { Suspense } from 'react';
 
-const QRCodeForm: React.FC = () => {
+const QRCodeGenerator: React.FC = () => {
 
     // State to hold the generated QR code URL
     const [qrCodeUrl, setQrCodeUrl] = useState<string>('');
@@ -177,14 +176,6 @@ const QRCodeForm: React.FC = () => {
                 </div>
             </div>
         </div>
-    );
-};
-
-const QRCodeGenerator = () => {
-    return (
-        <Suspense fallback={<div className="flex justify-center items-center h-screen">Loading...</div>}>
-            <QRCodeForm />
-        </Suspense>
     );
 };
 

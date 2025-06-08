@@ -3,9 +3,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { Suspense } from 'react'
 
-const EditForm = () => {
+const Edit = () => {
 
     // Using Next.js router for navigation
     const router = useRouter();
@@ -139,15 +138,5 @@ const EditForm = () => {
     )
 }
 
-
-const Edit = () => {
-    return (
-
-        // Using Suspense to handle loading state while the EditForm component is being loaded
-        <Suspense fallback={<div className="flex justify-center items-center h-screen">Loading...</div>}>
-            <EditForm />
-        </Suspense>
-    )
-}
 
 export default Edit;
