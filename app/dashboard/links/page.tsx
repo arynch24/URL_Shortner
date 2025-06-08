@@ -113,7 +113,7 @@ const Links = () => {
         <div className="flex justify-between items-center bg-zinc-100 p-4 rounded-md ">
           <div className="w-2/5 flex items-center gap-1 border border-zinc-400 rounded px-3 bg-white">
             <Search size={20} strokeWidth={1} className="text-zinc-500" />
-            <input type="text" placeholder="Search links..." className="w-full text-sm md:text-base  h-8 md:h-10 rounded-md px-2 text-zinc-700 focus:outline-none focus:border-sky-500" />
+            <input type="text" placeholder="Search links..." className="w-full text-sm md:text-base  h-8 md:h-10 rounded-md px-2 text-zinc-700 focus:outline-none focus:border-blue-500" />
           </div>
           <div className="">
             <Link href='/dashboard/links/create' className="flex text-sm md:text-base items-center gap-2 bg-zinc-900 text-white px-3 md:px-4 py-2 rounded-md hover:bg-zinc-800 transition duration-200">

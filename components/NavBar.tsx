@@ -39,12 +39,11 @@ const DashboardNav = async () => {
                             LogIn
                         </Link>
                         <Link href='/signup'
-                            className=" bg-zinc-900 border border-zinc-900 text-white px-4 py-2 rounded-md hover:bg-zinc-800 transition duration-200">
+                            className=" bg-blue-600 shadow-lg border border-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-200">
                             SignUp
                         </Link>
                     </div>
             }
-
         </div>
     );
 };

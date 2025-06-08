@@ -98,17 +98,17 @@ const EditForm = () => {
                     <div className="flex flex-col gap-3 rounded-md">
                         <label className="text-sm font-medium text-zinc-700">Destination URL</label>
                         <input type='text' placeholder="https://your-long-url.com" value={originalUrl} onChange={(e) => { setOriginalUrl(e.target.value) }}
-                            className="border text-sm md:text-base border-zinc-300 rounded-md px-3 py-2 focus:outline-none focus:border-sky-500"
+                            className="border text-sm md:text-base border-zinc-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
                         />
 
                         <label className="text-sm font-medium text-zinc-700">Short Link</label>
                         <div className="flex items-center gap-2">
                             <input type='text' placeholder="https://cuttely.vercel.app/api" value={`https://cuttely.vercel.app/api`} readOnly
-                                className="border text-sm md:text-base border-zinc-300 bg-zinc-100 rounded-md px-3 py-2 focus:outline-none focus:border-sky-500 w-1/2 cursor-not-allowed"
+                                className="border text-sm md:text-base border-zinc-300 bg-zinc-100 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500 w-1/2 cursor-not-allowed"
                             />
                             /
                             <input type='text' placeholder="(optional)" value={customCode} onChange={(e) => { setCustomCode(e.target.value) }}
-                                className="w-1/2 border text-sm md:text-base border-zinc-300 rounded-md px-3 py-2 focus:outline-none focus:border-sky-500"
+                                className="w-1/2 border text-sm md:text-base border-zinc-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
                             />
                         </div>
 
