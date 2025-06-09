@@ -2,6 +2,7 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import { prisma } from '@/lib/prisma';
 import bcrypt from 'bcrypt';
 import GoogleProvider from 'next-auth/providers/google';
+import { use } from 'react';
 
 export const NEXT_AUTH_CONFIG = {
     providers: [
@@ -82,6 +83,7 @@ export const NEXT_AUTH_CONFIG = {
 
                     // Assign the user ID to the user object for session handling
                     user.id = existingUser.id;
+                    user.name = existingUser.name || user.name || 'Google User';
                     return true;
                 } catch (error) {
 
