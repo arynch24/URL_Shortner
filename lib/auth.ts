@@ -9,7 +9,7 @@ export const NEXT_AUTH_CONFIG = {
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID!,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-          }),
+        }),
         CredentialsProvider({
             name: 'Credentials',
             credentials: {
@@ -66,16 +66,8 @@ export const NEXT_AUTH_CONFIG = {
                 try {
                     // Check if user already exists in database
                     let existingUser = await prisma.user.findUnique({
-                        where: { email: user.email,
-                            // Ensure we only find users with a password set
-                            password: { not: 'GOOGLE_OAUTH_USER' } // Exclude Google OAuth users
-                        },
+                        where: { email: user.email },
                     });
-
-                    // If user exists with cresentials, then give error to login with credentials
-                    if (existingUser) {
-                        throw new Error("This email is already registered with credentials. Please sign in with credentials or contact support.");
-                    }
 
                     // If user does not exist, create a new user
                     if (!existingUser) {
@@ -100,7 +92,7 @@ export const NEXT_AUTH_CONFIG = {
                     return false;
                 }
             }
-            
+
             return true;
         },
 
