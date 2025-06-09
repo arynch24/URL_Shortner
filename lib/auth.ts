@@ -81,9 +81,16 @@ export const NEXT_AUTH_CONFIG = {
                         });
                     }
 
+                    // Update the user's name if it has changed
+                    await prisma.user.update({
+                        where: { id: existingUser.id },
+                        data: { name: user.name }, 
+                    });
+
                     // Assign the user ID to the user object for session handling
                     user.id = existingUser.id;
-                    user.name = existingUser.name || user.name || 'Google User';
+
+                    // Return true to indicate successful sign in
                     return true;
                 } catch (error) {
 
